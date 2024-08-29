@@ -35,6 +35,8 @@ const levelOutput = [
 window.onload = function() {
     const container = document.getElementById('selects-container');
     for (let i = 1; i <= 5; i++) {
+        const label = document.createElement('label');
+        label.textContent = `鈦合金工廠${i}：`;
         const select = document.createElement('select');
         select.id = `factory${i}`;
         select.name = `factory${i}`;
@@ -42,7 +44,8 @@ window.onload = function() {
         levelOutput.forEach(item => {
             select.options.add(new Option(`等級 ${item.level}`, item.level));
         });
-        container.appendChild(select);
+        label.appendChild(select);
+        container.appendChild(label);
         container.appendChild(document.createElement('br'));
     }
 };
