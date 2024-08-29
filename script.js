@@ -58,7 +58,7 @@ function calculateOutput() {
         const output = levelOutput.find(item => item.level === level).output;
         total += output;
     }
-    document.getElementById('total-output').textContent = `總產出: ${total} 每小時`;
+    document.getElementById('total-output').textContent = `每小時總產出: ${total}`;
 
     const current = parseInt(document.getElementById('current-titanium').value) || 0;
     const needed = parseInt(document.getElementById('needed-titanium').value) || 0;
