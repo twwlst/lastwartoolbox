@@ -2,10 +2,25 @@
 <html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello World</title>
+    <title>熔爐升級時間計算</title>
 </head>
 <body>
-    <h1>Hello, World</h1>
+    <h1>熔爐升級時間計算</h1>
+    <form>
+        <div id="selects-container"></div>
+        <div>
+            <label>你現在有：<input type="number" id="current-titanium" placeholder="鈦合金數量"></label>
+        </div>
+        <div>
+            <label>高溫溶爐下一級還需要：<input type="number" id="needed-titanium" placeholder="所需鈦合金"></label>
+        </div>
+        <div id="difference">你還差：0</div>
+        <div id="time-needed">需要 0 小時</div>
+        <div id="upgrade-time">預計在：日期和時間</div>
+        <button type="button" onclick="calculateOutput()">計算產出</button>
+    </form>
+    <div id="total-output">總產出: 0</div>
+
+    <script src="script.js"></script>
 </body>
 </html>
