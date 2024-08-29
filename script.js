@@ -36,6 +36,7 @@ window.onload = function() {
     const container = document.getElementById('selects-container');
     for (let i = 1; i <= 5; i++) {
         const label = document.createElement('label');
+        label.className = 'factory-label';
         label.textContent = `鈦合金工廠${i}：`;
         const select = document.createElement('select');
         select.id = `factory${i}`;
@@ -44,8 +45,8 @@ window.onload = function() {
         levelOutput.forEach(item => {
             select.options.add(new Option(`等級 ${item.level}`, item.level));
         });
-        label.appendChild(select);
         container.appendChild(label);
+        container.appendChild(select);
         container.appendChild(document.createElement('br'));
     }
 };
@@ -66,8 +67,10 @@ function calculateOutput() {
     document.getElementById('difference').textContent = `你還差：${difference}`;
 
     const hoursNeeded = difference / total;
-    document.getElementById('time-needed').textContent = `需要 ${hoursNeeded.toFixed(2)} 小時`;
+    const hours = Math.floor(hoursNeeded); // 计算整数小时
+    const minutes = Math.round((hoursNeeded - hours) * 60); // 计算剩余的分钟数
+    document.getElementById('time-needed').textContent = `需要 ${hours} 小時 ${minutes} 分鐘`; // 显示小时和分钟
 
     const upgradeTime = new Date(Date.now() + hoursNeeded * 3600000);
-    document.getElementById('upgrade-time').textContent = `預計在：${upgradeTime.toLocaleString()}`;
+    document.getElementById('upgrade-time').textContent = `預計可升級時間：${upgradeTime.toLocaleString()}`;
 }
