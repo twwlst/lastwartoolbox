@@ -1,1 +1,28 @@
-
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>Curse Research Lab Upgrade Time Calculation</title>
+</head>
+<body>
+    <h1>Curse Research Lab Upgrade Time Calculation</h1>
+    <form>
+        <div id="selects-container"></div>
+        
+        <div>
+            <label>Now you have: <input type="number" id="current-titanium" placeholder="amount of the sacred water"></label>
+        </div>
+        <div>
+            <label>The total amount of sacred water required for the next level: <input type="number" id="needed-titanium" placeholder=""></label>
+        </div>
+        
+        <button type="button" onclick="calculateOutput()">Calculate</button>
+        <div id="total-output">Output per hour: 0</div>
+        <div id="difference">You still lack: 0</div>
+        <div id="time-needed"> 0 hours 0 minutes needed</div>
+        <div id="upgrade-time">Estimated upgrade time</div>
+    </form>
+    
+    <script src="script-en.js"></script>
+</body>
+</html>
