@@ -1,16 +1,504 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lastwar Toolbox</title>
-</head>
-<body>
-    <h1>Lastwar Toolbox</h1>
-    <ul>
-        <li><a href="/lastwartoolbox/s2/index.html">Season 2</a></li>
-        <li><a href="/lastwartoolbox/s3/index.html">Season 3 (Chinese)</a></li>
-        <li><a href="/lastwartoolbox/s3/index-en.html">Season 3 (English)</a></li>
-    </ul>
-</body>
+<!DOCTYPE HTML>
+<!--
+	Dimension by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Dimension by HTML5 UP - 升級時間計算</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+		<div id="wrapper">
+
+			<!-- Header -->
+			<header id="header">
+				<div class="logo">
+					<span class="icon fa-gem"></span>
+				</div>
+				<div class="content">
+					<div class="inner">
+						<h1>Lastwar Toolbox</h1>
+						<p>最後的戰爭 賽季升級計算</p>
+					</div>
+				</div>
+				<nav>
+					<ul>
+						<li><a href="#s2">賽季 2</a></li>
+						<li><a href="#s3">賽季 3</a></li>
+						<!-- <li><a href="#about">About</a></li>
+						<li><a href="#contact">Contact</a></li> -->
+						<!-- 如有需要，也可將上方連結移至此處 -->
+					</ul>
+				</nav>
+			</header>
+
+			<!-- Main -->
+			<div id="main">
+
+				<!-- s2 區塊：熔爐升級時間計算 -->
+				<article id="s2">
+					<h2 class="major">熔爐升級時間計算 (S2)</h2>
+					<form>
+						<div id="s2-selects-container"></div>
+						<div>
+							<label>你現在有：
+								<input type="text" id="s2-current-titanium" placeholder="鈦合金數量">
+							</label>
+						</div>
+						<div>
+							<label>高溫溶爐下一級總共需要：
+								<input type="text" id="s2-needed-titanium" placeholder="所需鈦合金">
+							</label>
+						</div>
+						<button type="button" class="button primary" onclick="calculateS2Output()" style="margin-bottom:20px;">開始計算</button>
+						<div id="s2-total-output">每小時總產出: 0</div>
+						<div id="s2-difference">你還差：0</div>
+						<div id="s2-time-needed">需要 0 小時 0 分鐘</div>
+						<div id="s2-upgrade-time">預計可升級時間：</div>
+					</form>
+				</article>
+
+				<!-- s3 區塊：詛咒研究所升級時間計算 -->
+				<article id="s3">
+					<h2 class="major">詛咒研究所升級時間計算 (S3)</h2>
+					<form>
+						<div id="s3-selects-container"></div>
+						<div>
+							<label>你現在有：
+								<input type="text" id="s3-current-titanium" placeholder="聖水數量">
+							</label>
+						</div>
+						<div>
+							<label>詛咒研究所下一級總共需要：
+								<input type="text" id="s3-needed-titanium" placeholder="所需聖水">
+							</label>
+						</div>
+						<button type="button" class="button primary"  onclick="calculateS3Output()" style="margin-bottom:20px;">開始計算</button>
+						<div id="s3-total-output">每小時總產出: 0</div>
+						<div id="s3-difference">你還差：0</div>
+						<div id="s3-time-needed">需要 0 小時 0 分鐘</div>
+						<div id="s3-upgrade-time">預計可升級時間：</div>
+					</form>
+				</article>
+
+				<!-- Elements -->
+				<article id="elements">
+					<h2 class="major">Elements</h2>
+
+					<section>
+						<h3 class="major">Text</h3>
+						<p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
+						This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
+						This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.</p>
+						<hr />
+						<h2>Heading Level 2</h2>
+						<h3>Heading Level 3</h3>
+						<h4>Heading Level 4</h4>
+						<h5>Heading Level 5</h5>
+						<h6>Heading Level 6</h6>
+						<hr />
+						<h4>Blockquote</h4>
+						<blockquote>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan faucibus. Vestibulum ante ipsum primis in faucibus lorem ipsum dolor sit amet nullam adipiscing eu felis.</blockquote>
+						<h4>Preformatted</h4>
+						<pre><code>i = 0;
+
+				while (!deck.isInOrder()) {
+				print 'Iteration ' + i;
+				deck.shuffle();
+				i++;
+				}
+
+				print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
+					</section>
+
+					<section>
+						<h3 class="major">Lists</h3>
+
+						<h4>Unordered</h4>
+						<ul>
+							<li>Dolor pulvinar etiam.</li>
+							<li>Sagittis adipiscing.</li>
+							<li>Felis enim feugiat.</li>
+						</ul>
+
+						<h4>Alternate</h4>
+						<ul class="alt">
+							<li>Dolor pulvinar etiam.</li>
+							<li>Sagittis adipiscing.</li>
+							<li>Felis enim feugiat.</li>
+						</ul>
+
+						<h4>Ordered</h4>
+						<ol>
+							<li>Dolor pulvinar etiam.</li>
+							<li>Etiam vel felis viverra.</li>
+							<li>Felis enim feugiat.</li>
+							<li>Dolor pulvinar etiam.</li>
+							<li>Etiam vel felis lorem.</li>
+							<li>Felis enim et feugiat.</li>
+						</ol>
+						<h4>Icons</h4>
+						<ul class="icons">
+							<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+						</ul>
+
+						<h4>Actions</h4>
+						<ul class="actions">
+							<li><a href="#" class="button primary">Default</a></li>
+							<li><a href="#" class="button">Default</a></li>
+						</ul>
+						<ul class="actions stacked">
+							<li><a href="#" class="button primary">Default</a></li>
+							<li><a href="#" class="button">Default</a></li>
+						</ul>
+					</section>
+
+					<section>
+						<h3 class="major">Table</h3>
+						<h4>Default</h4>
+						<div class="table-wrapper">
+							<table>
+								<thead>
+									<tr>
+										<th>Name</th>
+										<th>Description</th>
+										<th>Price</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Item One</td>
+										<td>Ante turpis integer aliquet porttitor.</td>
+										<td>29.99</td>
+									</tr>
+									<tr>
+										<td>Item Two</td>
+										<td>Vis ac commodo adipiscing arcu aliquet.</td>
+										<td>19.99</td>
+									</tr>
+									<tr>
+										<td>Item Three</td>
+										<td> Morbi faucibus arcu accumsan lorem.</td>
+										<td>29.99</td>
+									</tr>
+									<tr>
+										<td>Item Four</td>
+										<td>Vitae integer tempus condimentum.</td>
+										<td>19.99</td>
+									</tr>
+									<tr>
+										<td>Item Five</td>
+										<td>Ante turpis integer aliquet porttitor.</td>
+										<td>29.99</td>
+									</tr>
+								</tbody>
+								<tfoot>
+									<tr>
+										<td colspan="2"></td>
+										<td>100.00</td>
+									</tr>
+								</tfoot>
+							</table>
+						</div>
+
+						<h4>Alternate</h4>
+						<div class="table-wrapper">
+							<table class="alt">
+								<thead>
+									<tr>
+										<th>Name</th>
+										<th>Description</th>
+										<th>Price</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Item One</td>
+										<td>Ante turpis integer aliquet porttitor.</td>
+										<td>29.99</td>
+									</tr>
+									<tr>
+										<td>Item Two</td>
+										<td>Vis ac commodo adipiscing arcu aliquet.</td>
+										<td>19.99</td>
+									</tr>
+									<tr>
+										<td>Item Three</td>
+										<td> Morbi faucibus arcu accumsan lorem.</td>
+										<td>29.99</td>
+									</tr>
+									<tr>
+										<td>Item Four</td>
+										<td>Vitae integer tempus condimentum.</td>
+										<td>19.99</td>
+									</tr>
+									<tr>
+										<td>Item Five</td>
+										<td>Ante turpis integer aliquet porttitor.</td>
+										<td>29.99</td>
+									</tr>
+								</tbody>
+								<tfoot>
+									<tr>
+										<td colspan="2"></td>
+										<td>100.00</td>
+									</tr>
+								</tfoot>
+							</table>
+						</div>
+					</section>
+
+					<section>
+						<h3 class="major">Buttons</h3>
+						<ul class="actions">
+							<li><a href="#" class="button primary">Primary</a></li>
+							<li><a href="#" class="button">Default</a></li>
+						</ul>
+						<ul class="actions">
+							<li><a href="#" class="button">Default</a></li>
+							<li><a href="#" class="button small">Small</a></li>
+						</ul>
+						<ul class="actions">
+							<li><a href="#" class="button primary icon solid fa-download">Icon</a></li>
+							<li><a href="#" class="button icon solid fa-download">Icon</a></li>
+						</ul>
+						<ul class="actions">
+							<li><span class="button primary disabled">Disabled</span></li>
+							<li><span class="button disabled">Disabled</span></li>
+						</ul>
+					</section>
+
+					<section>
+						<h3 class="major">Form</h3>
+						<form method="post" action="#">
+							<div class="fields">
+								<div class="field half">
+									<label for="demo-name">Name</label>
+									<input type="text" name="demo-name" id="demo-name" value="" placeholder="Jane Doe" />
+								</div>
+								<div class="field half">
+									<label for="demo-email">Email</label>
+									<input type="email" name="demo-email" id="demo-email" value="" placeholder="jane@untitled.tld" />
+								</div>
+								<div class="field">
+									<label for="demo-category">Category</label>
+									<select name="demo-category" id="demo-category">
+										<option value="">-</option>
+										<option value="1">Manufacturing</option>
+										<option value="1">Shipping</option>
+										<option value="1">Administration</option>
+										<option value="1">Human Resources</option>
+									</select>
+								</div>
+								<div class="field half">
+									<input type="radio" id="demo-priority-low" name="demo-priority" checked>
+									<label for="demo-priority-low">Low</label>
+								</div>
+								<div class="field half">
+									<input type="radio" id="demo-priority-high" name="demo-priority">
+									<label for="demo-priority-high">High</label>
+								</div>
+								<div class="field half">
+									<input type="checkbox" id="demo-copy" name="demo-copy">
+									<label for="demo-copy">Email me a copy</label>
+								</div>
+								<div class="field half">
+									<input type="checkbox" id="demo-human" name="demo-human" checked>
+									<label for="demo-human">Not a robot</label>
+								</div>
+								<div class="field">
+									<label for="demo-message">Message</label>
+									<textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
+								</div>
+							</div>
+							<ul class="actions">
+								<li><input type="submit" value="Send Message" class="primary" /></li>
+								<li><input type="reset" value="Reset" /></li>
+							</ul>
+						</form>
+					</section>
+
+				</article>
+
+			</div>
+
+			<!-- Footer -->
+			<footer id="footer">
+				<p class="copyright">&copy; #188 [GSt]TWWlst, ChatGPT. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+			</footer>
+
+		</div>
+
+		<!-- BG -->
+		<div id="bg"></div>
+
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		<!-- 以下為合併後的計算器 script -->
+		<script>
+			// 統一使用的生產數據
+			const levelOutput = [
+				{ level: 0, output: 0 },
+				{ level: 1, output: 720 },
+				{ level: 2, output: 1440 },
+				{ level: 3, output: 2160 },
+				{ level: 4, output: 2880 },
+				{ level: 5, output: 3600 },
+				{ level: 6, output: 4320 },
+				{ level: 7, output: 5040 },
+				{ level: 8, output: 5760 },
+				{ level: 9, output: 6480 },
+				{ level: 10, output: 7200 },
+				{ level: 11, output: 7920 },
+				{ level: 12, output: 8640 },
+				{ level: 13, output: 9360 },
+				{ level: 14, output: 10080 },
+				{ level: 15, output: 10800 },
+				{ level: 16, output: 11520 },
+				{ level: 17, output: 12240 },
+				{ level: 18, output: 12960 },
+				{ level: 19, output: 13680 },
+				{ level: 20, output: 14400 },
+				{ level: 21, output: 15120 },
+				{ level: 22, output: 15840 },
+				{ level: 23, output: 16560 },
+				{ level: 24, output: 17280 },
+				{ level: 25, output: 18000 },
+				{ level: 26, output: 18720 },
+				{ level: 27, output: 19440 },
+				{ level: 28, output: 20160 },
+				{ level: 29, output: 20880 },
+				{ level: 30, output: 21600 }
+			];
+
+			// ============ s2 計算器 ============
+
+			// 初始化 s2 的下拉選單
+			function initS2() {
+				const container = document.getElementById('s2-selects-container');
+				for (let i = 1; i <= 5; i++) {
+					const label = document.createElement('label');
+					label.className = 'factory-label';
+					label.textContent = `鈦合金工廠${i}：`;
+					const select = document.createElement('select');
+					select.id = `s2-factory${i}`;
+					select.name = `s2-factory${i}`;
+					select.options.add(new Option('選擇等級', ''));
+					levelOutput.forEach(item => {
+						select.options.add(new Option(`等級 ${item.level}`, item.level));
+					});
+					container.appendChild(label);
+					container.appendChild(select);
+					container.appendChild(document.createElement('br'));
+				}
+			}
+
+			// s2 的計算函式
+			function calculateS2Output() {
+				let total = 0;
+				for (let i = 1; i <= 5; i++) {
+					const select = document.getElementById(`s2-factory${i}`);
+					const level = parseInt(select.value);
+					const item = levelOutput.find(item => item.level === level);
+					const output = item ? item.output : 0;
+					total += output;
+				}
+				document.getElementById('s2-total-output').textContent = `每小時總產出: ${total}`;
+
+				const current = parseInt(document.getElementById('s2-current-titanium').value) || 0;
+				const needed = parseInt(document.getElementById('s2-needed-titanium').value) || 0;
+				const difference = needed - current;
+				document.getElementById('s2-difference').textContent = `你還差：${difference}`;
+
+				// 避免除以 0
+				if (total <= 0) {
+					document.getElementById('s2-time-needed').textContent = `無法計算時間 (產出為 0)`;
+					document.getElementById('s2-upgrade-time').textContent = `預計可升級時間：無法計算`;
+					return;
+				}
+
+				const hoursNeeded = difference / total;
+				const hours = Math.floor(hoursNeeded);
+				const minutes = Math.round((hoursNeeded - hours) * 60);
+				document.getElementById('s2-time-needed').textContent = `需要 ${hours} 小時 ${minutes} 分鐘`;
+
+				const upgradeTime = new Date(Date.now() + hoursNeeded * 3600000);
+				document.getElementById('s2-upgrade-time').textContent = `預計可升級時間：${upgradeTime.toLocaleString()}`;
+			}
+
+			// ============ s3 計算器 ============
+
+			// 初始化 s3 的下拉選單
+			function initS3() {
+				const container = document.getElementById('s3-selects-container');
+				for (let i = 1; i <= 5; i++) {
+					const label = document.createElement('label');
+					label.className = 'factory-label';
+					label.textContent = `祝福之泉${i}：`;
+					const select = document.createElement('select');
+					select.id = `s3-factory${i}`;
+					select.name = `s3-factory${i}`;
+					select.options.add(new Option('選擇等級', ''));
+					levelOutput.forEach(item => {
+						select.options.add(new Option(`等級 ${item.level}`, item.level));
+					});
+					container.appendChild(label);
+					container.appendChild(select);
+					container.appendChild(document.createElement('br'));
+				}
+			}
+
+			// s3 的計算函式
+			function calculateS3Output() {
+				let total = 0;
+				for (let i = 1; i <= 5; i++) {
+					const select = document.getElementById(`s3-factory${i}`);
+					const level = parseInt(select.value);
+					const item = levelOutput.find(item => item.level === level);
+					const output = item ? item.output : 0;
+					total += output;
+				}
+				document.getElementById('s3-total-output').textContent = `每小時總產出: ${total}`;
+
+				const current = parseInt(document.getElementById('s3-current-titanium').value) || 0;
+				const needed = parseInt(document.getElementById('s3-needed-titanium').value) || 0;
+				const difference = needed - current;
+				document.getElementById('s3-difference').textContent = `你還差：${difference}`;
+
+				if (total <= 0) {
+					document.getElementById('s3-time-needed').textContent = `無法計算時間 (產出為 0)`;
+					document.getElementById('s3-upgrade-time').textContent = `預計可升級時間：無法計算`;
+					return;
+				}
+
+				const hoursNeeded = difference / total;
+				const hours = Math.floor(hoursNeeded);
+				const minutes = Math.round((hoursNeeded - hours) * 60);
+				document.getElementById('s3-time-needed').textContent = `需要 ${hours} 小時 ${minutes} 分鐘`;
+
+				const upgradeTime = new Date(Date.now() + hoursNeeded * 3600000);
+				document.getElementById('s3-upgrade-time').textContent = `預計可升級時間：${upgradeTime.toLocaleString()}`;
+			}
+
+			// 初始化兩組計算器
+			document.addEventListener('DOMContentLoaded', function () {
+				initS2();
+				initS3();
+			});
+		</script>
+	</body>
 </html>
