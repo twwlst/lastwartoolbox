@@ -32,6 +32,7 @@
 					<ul>
 						<li><a href="#s2">賽季 2</a></li>
 						<li><a href="#s3">賽季 3</a></li>
+						<li><a href="#s4">賽季 4</a></li>
 						<!-- <li><a href="#about">About</a></li>
 						<li><a href="#contact">Contact</a></li> -->
 						<!-- 如有需要，也可將上方連結移至此處 -->
@@ -49,12 +50,12 @@
 						<div id="s2-selects-container"></div>
 						<div>
 							<label>你現在有：
-								<input type="text" id="s2-current-titanium" placeholder="鈦合金數量">
+								<input type="text" id="s2-current-resource" placeholder="鈦合金數量">
 							</label>
 						</div>
 						<div>
 							<label>高溫溶爐下一級總共需要：
-								<input type="text" id="s2-needed-titanium" placeholder="所需鈦合金">
+								<input type="text" id="s2-needed-resource" placeholder="所需鈦合金">
 							</label>
 						</div>
 						<button type="button" class="button primary" onclick="calculateS2Output()" style="margin-bottom:20px;">開始計算</button>
@@ -72,12 +73,12 @@
 						<div id="s3-selects-container"></div>
 						<div>
 							<label>你現在有：
-								<input type="text" id="s3-current-titanium" placeholder="聖水數量">
+								<input type="text" id="s3-current-resource" placeholder="聖水數量">
 							</label>
 						</div>
 						<div>
 							<label>詛咒研究所下一級總共需要：
-								<input type="text" id="s3-needed-titanium" placeholder="所需聖水">
+								<input type="text" id="s3-needed-resource" placeholder="所需聖水">
 							</label>
 						</div>
 						<button type="button" class="button primary"  onclick="calculateS3Output()" style="margin-bottom:20px;">開始計算</button>
@@ -85,6 +86,29 @@
 						<div id="s3-difference">你還差：0</div>
 						<div id="s3-time-needed">需要 0 小時 0 分鐘</div>
 						<div id="s3-upgrade-time">預計可升級時間：</div>
+					</form>
+				</article>
+
+				<!-- s4 區塊：詛咒研究所升級時間計算 -->
+				<article id="s4">
+					<h2 class="major">光電研究所升級時間計算 (S4)</h2>
+					<form>
+						<div id="s4-selects-container"></div>
+						<div>
+							<label>你現在有：
+								<input type="text" id="s4-current-resource" placeholder="石英數量">
+							</label>
+						</div>
+						<div>
+							<label>詛咒研究所下一級總共需要：
+								<input type="text" id="s4-needed-resource" placeholder="所需石英">
+							</label>
+						</div>
+						<button type="button" class="button primary"  onclick="calculateS4Output()" style="margin-bottom:20px;">開始計算</button>
+						<div id="s4-total-output">每小時總產出: 0</div>
+						<div id="s4-difference">你還差：0</div>
+						<div id="s4-time-needed">需要 0 小時 0 分鐘</div>
+						<div id="s4-upgrade-time">預計可升級時間：</div>
 					</form>
 				</article>
 
@@ -419,8 +443,8 @@
 				}
 				document.getElementById('s2-total-output').textContent = `每小時總產出: ${total}`;
 
-				const current = parseInt(document.getElementById('s2-current-titanium').value) || 0;
-				const needed = parseInt(document.getElementById('s2-needed-titanium').value) || 0;
+				const current = parseInt(document.getElementById('s2-current-resource').value) || 0;
+				const needed = parseInt(document.getElementById('s2-needed-resource').value) || 0;
 				const difference = needed - current;
 				document.getElementById('s2-difference').textContent = `你還差：${difference}`;
 
@@ -474,8 +498,8 @@
 				}
 				document.getElementById('s3-total-output').textContent = `每小時總產出: ${total}`;
 
-				const current = parseInt(document.getElementById('s3-current-titanium').value) || 0;
-				const needed = parseInt(document.getElementById('s3-needed-titanium').value) || 0;
+				const current = parseInt(document.getElementById('s3-current-resource').value) || 0;
+				const needed = parseInt(document.getElementById('s3-needed-resource').value) || 0;
 				const difference = needed - current;
 				document.getElementById('s3-difference').textContent = `你還差：${difference}`;
 
@@ -494,10 +518,65 @@
 				document.getElementById('s3-upgrade-time').textContent = `預計可升級時間：${upgradeTime.toLocaleString()}`;
 			}
 
+			// ============ s4 計算器 ============
+
+			// 初始化 s4 的下拉選單
+			function initS4() {
+				const container = document.getElementById('s4-selects-container');
+				for (let i = 1; i <= 5; i++) {
+					const label = document.createElement('label');
+					label.className = 'factory-label';
+					label.textContent = `石英工坊${i}：`;
+					const select = document.createElement('select');
+					select.id = `s4-factory${i}`;
+					select.name = `s4-factory${i}`;
+					select.options.add(new Option('選擇等級', ''));
+					levelOutput.forEach(item => {
+						select.options.add(new Option(`等級 ${item.level}`, item.level));
+					});
+					container.appendChild(label);
+					container.appendChild(select);
+					container.appendChild(document.createElement('br'));
+				}
+			}
+
+			// s4 的計算函式
+			function calculateS4Output() {
+				let total = 0;
+				for (let i = 1; i <= 5; i++) {
+					const select = document.getElementById(`s4-factory${i}`);
+					const level = parseInt(select.value);
+					const item = levelOutput.find(item => item.level === level);
+					const output = item ? item.output : 0;
+					total += output;
+				}
+				document.getElementById('s4-total-output').textContent = `每小時總產出: ${total}`;
+
+				const current = parseInt(document.getElementById('s4-current-resource').value) || 0;
+				const needed = parseInt(document.getElementById('s4-needed-resource').value) || 0;
+				const difference = needed - current;
+				document.getElementById('s4-difference').textContent = `你還差：${difference}`;
+
+				if (total <= 0) {
+					document.getElementById('s4-time-needed').textContent = `無法計算時間 (產出為 0)`;
+					document.getElementById('s4-upgrade-time').textContent = `預計可升級時間：無法計算`;
+					return;
+				}
+
+				const hoursNeeded = difference / total;
+				const hours = Math.floor(hoursNeeded);
+				const minutes = Math.round((hoursNeeded - hours) * 60);
+				document.getElementById('s4-time-needed').textContent = `需要 ${hours} 小時 ${minutes} 分鐘`;
+
+				const upgradeTime = new Date(Date.now() + hoursNeeded * 3600000);
+				document.getElementById('s4-upgrade-time').textContent = `預計可升級時間：${upgradeTime.toLocaleString()}`;
+			}
+
 			// 初始化兩組計算器
 			document.addEventListener('DOMContentLoaded', function () {
 				initS2();
 				initS3();
+				initS4();
 			});
 		</script>
 	</body>
