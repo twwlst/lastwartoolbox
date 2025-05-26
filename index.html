@@ -409,6 +409,73 @@
 				{ level: 30, output: 21600 }
 			];
 
+			// ============ 資料保存和載入功能 ============
+
+			// 保存資料到 localStorage
+			function saveData(season, data) {
+				localStorage.setItem(`lastwar-toolbox-${season}`, JSON.stringify(data));
+			}
+
+			// 從 localStorage 載入資料
+			function loadData(season) {
+				const saved = localStorage.getItem(`lastwar-toolbox-${season}`);
+				return saved ? JSON.parse(saved) : null;
+			}
+
+			// 通用保存函式
+			function saveFormData(season) {
+				const data = {
+					factories: {},
+					currentResource: document.getElementById(`${season}-current-resource`).value,
+					neededResource: document.getElementById(`${season}-needed-resource`).value
+				};
+
+				for (let i = 1; i <= 5; i++) {
+					const select = document.getElementById(`${season}-factory${i}`);
+					data.factories[`factory${i}`] = select.value;
+				}
+
+				saveData(season, data);
+			}
+
+			// 通用載入函式
+			function loadFormData(season) {
+				const data = loadData(season);
+				if (data) {
+					// 載入工廠等級
+					for (let i = 1; i <= 5; i++) {
+						const select = document.getElementById(`${season}-factory${i}`);
+						if (data.factories && data.factories[`factory${i}`]) {
+							select.value = data.factories[`factory${i}`];
+						}
+					}
+
+					// 載入資源數量
+					if (data.currentResource) {
+						document.getElementById(`${season}-current-resource`).value = data.currentResource;
+					}
+					if (data.neededResource) {
+						document.getElementById(`${season}-needed-resource`).value = data.neededResource;
+					}
+				}
+			}
+
+			// 為所有輸入欄位添加自動保存功能
+			function addAutoSave(season) {
+				// 工廠下拉選單自動保存
+				for (let i = 1; i <= 5; i++) {
+					const select = document.getElementById(`${season}-factory${i}`);
+					select.addEventListener('change', () => saveFormData(season));
+				}
+
+				// 資源輸入欄位自動保存
+				const currentInput = document.getElementById(`${season}-current-resource`);
+				const neededInput = document.getElementById(`${season}-needed-resource`);
+				
+				currentInput.addEventListener('input', () => saveFormData(season));
+				neededInput.addEventListener('input', () => saveFormData(season));
+			}
+
 			// ============ s2 計算器 ============
 
 			// 初始化 s2 的下拉選單
@@ -429,6 +496,11 @@
 					container.appendChild(select);
 					container.appendChild(document.createElement('br'));
 				}
+				
+				// 載入之前保存的資料
+				loadFormData('s2');
+				// 添加自動保存功能
+				addAutoSave('s2');
 			}
 
 			// s2 的計算函式
@@ -462,6 +534,9 @@
 
 				const upgradeTime = new Date(Date.now() + hoursNeeded * 3600000);
 				document.getElementById('s2-upgrade-time').textContent = `預計可升級時間：${upgradeTime.toLocaleString()}`;
+				
+				// 保存資料
+				saveFormData('s2');
 			}
 
 			// ============ s3 計算器 ============
@@ -484,6 +559,11 @@
 					container.appendChild(select);
 					container.appendChild(document.createElement('br'));
 				}
+				
+				// 載入之前保存的資料
+				loadFormData('s3');
+				// 添加自動保存功能
+				addAutoSave('s3');
 			}
 
 			// s3 的計算函式
@@ -516,6 +596,9 @@
 
 				const upgradeTime = new Date(Date.now() + hoursNeeded * 3600000);
 				document.getElementById('s3-upgrade-time').textContent = `預計可升級時間：${upgradeTime.toLocaleString()}`;
+				
+				// 保存資料
+				saveFormData('s3');
 			}
 
 			// ============ s4 計算器 ============
@@ -538,6 +621,11 @@
 					container.appendChild(select);
 					container.appendChild(document.createElement('br'));
 				}
+				
+				// 載入之前保存的資料
+				loadFormData('s4');
+				// 添加自動保存功能
+				addAutoSave('s4');
 			}
 
 			// s4 的計算函式
@@ -570,9 +658,12 @@
 
 				const upgradeTime = new Date(Date.now() + hoursNeeded * 3600000);
 				document.getElementById('s4-upgrade-time').textContent = `預計可升級時間：${upgradeTime.toLocaleString()}`;
+				
+				// 保存資料
+				saveFormData('s4');
 			}
 
-			// 初始化兩組計算器
+			// 初始化所有計算器
 			document.addEventListener('DOMContentLoaded', function () {
 				initS2();
 				initS3();
