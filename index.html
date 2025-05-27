@@ -476,6 +476,29 @@
 				neededInput.addEventListener('input', () => saveFormData(season));
 			}
 
+			// 為輸入欄位添加 Enter 鍵觸發計算功能
+			function addEnterKeyListener(season) {
+				const currentInput = document.getElementById(`${season}-current-resource`);
+				const neededInput = document.getElementById(`${season}-needed-resource`);
+				
+				const handleEnterKey = (event) => {
+					if (event.key === 'Enter') {
+						event.preventDefault();
+						// 根據不同賽季呼叫對應的計算函式
+						if (season === 's2') {
+							calculateS2Output();
+						} else if (season === 's3') {
+							calculateS3Output();
+						} else if (season === 's4') {
+							calculateS4Output();
+						}
+					}
+				};
+				
+				currentInput.addEventListener('keydown', handleEnterKey);
+				neededInput.addEventListener('keydown', handleEnterKey);
+			}
+
 			// ============ s2 計算器 ============
 
 			// 初始化 s2 的下拉選單
@@ -501,6 +524,8 @@
 				loadFormData('s2');
 				// 添加自動保存功能
 				addAutoSave('s2');
+				// 添加 Enter 鍵觸發計算功能
+				addEnterKeyListener('s2');
 			}
 
 			// s2 的計算函式
@@ -564,6 +589,8 @@
 				loadFormData('s3');
 				// 添加自動保存功能
 				addAutoSave('s3');
+				// 添加 Enter 鍵觸發計算功能
+				addEnterKeyListener('s3');
 			}
 
 			// s3 的計算函式
@@ -626,6 +653,8 @@
 				loadFormData('s4');
 				// 添加自動保存功能
 				addAutoSave('s4');
+				// 添加 Enter 鍵觸發計算功能
+				addEnterKeyListener('s4');
 			}
 
 			// s4 的計算函式
