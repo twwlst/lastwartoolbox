@@ -31,6 +31,7 @@
 				<nav>
 					<ul>
 						<li><a href="#s4">賽季 4</a></li>
+						<li><a href="#s4-resistance">S4 抗性計算</a></li>
 						<li><a href="#s3">賽季 3</a></li>
 						<li><a href="#s2">賽季 2</a></li>
 						<!-- <li><a href="#about">About</a></li>
@@ -109,6 +110,75 @@
 						<div id="s4-difference">你還差：0</div>
 						<div id="s4-time-needed">需要 0 小時 0 分鐘</div>
 						<div id="s4-upgrade-time">預計可升級時間：</div>
+					</form>
+				</article>
+
+				<!-- s4 抗性計算器，5-7 抗性不確定 -->
+				<article id="s4-resistance">
+					<h2 class="major">S4 抗性計算機</h2>
+					<form method="post" action="#">
+						<div class="fields">
+							<div class="field">
+								<label for="research-level">光電研究所等級</label>
+								<select id="research-level" name="research-level">
+									<option value="">選擇等級</option>
+									<option value="1">等級 1 (100 抗性)</option>
+									<option value="2">等級 2 (200 抗性)</option>
+									<option value="3">等級 3 (300 抗性)</option>
+									<option value="4">等級 4 (550 抗性)</option>
+									<option value="5">等級 5 (700 抗性)</option>
+									<option value="6">等級 6 (850 抗性)</option>
+									<option value="7">等級 7 (1000 抗性)</option>
+									<option value="8">等級 8 (1250 抗性)</option>
+									<option value="9">等級 9 (1500 抗性)</option>
+									<option value="10">等級 10 (1750 抗性)</option>
+									<option value="11">等級 11 (2000 抗性)</option>
+									<option value="12">等級 12 (2250 抗性)</option>
+									<option value="13">等級 13 (2500 抗性)</option>
+									<option value="14">等級 14 (2750 抗性)</option>
+									<option value="15">等級 15 (3000 抗性)</option>
+									<option value="16">等級 16 (3400 抗性)</option>
+									<option value="17">等級 17 (3800 抗性)</option>
+									<option value="18">等級 18 (4200 抗性)</option>
+									<option value="19">等級 19 (4600 抗性)</option>
+									<option value="20">等級 20 (5000 抗性)</option>
+									<option value="21">等級 21 (5500 抗性)</option>
+									<option value="22">等級 22 (6000 抗性)</option>
+									<option value="23">等級 23 (6500 抗性)</option>
+									<option value="24">等級 24 (7000 抗性)</option>
+									<option value="25">等級 25 (7500 抗性)</option>
+									<option value="26">等級 26 (8000 抗性)</option>
+									<option value="27">等級 27 (8500 抗性)</option>
+									<option value="28">等級 28 (9000 抗性)</option>
+									<option value="29">等級 29 (9500 抗性)</option>
+									<option value="30">等級 30 (10000 抗性)</option>
+								</select>
+							</div>
+							<div class="field">
+								<label for="l-buff">L Buff 等級</label>
+								<select id="l-buff" name="l-buff">
+									<option value="0">L0 (+0 抗性)</option>
+									<option value="1">L1 (+50 抗性)</option>
+									<option value="2">L2 (+150 抗性)</option>
+									<option value="3">L3 (+250 抗性)</option>
+									<option value="4">L4 (+250 抗性)</option>
+								</select>
+							</div>
+							<div class="field half">
+								<input type="checkbox" id="weekly-card-buff" name="weekly-card-buff">
+								<label for="weekly-card-buff">週卡 (+250 抗性)</label>
+							</div>
+							<div class="field half">
+								<input type="checkbox" id="guardian-buff" name="guardian-buff">
+								<label for="guardian-buff">守護者 (+250 抗性)</label>
+							</div>
+						</div>
+						<ul class="actions">
+							<li><input type="button" value="計算總抗性" class="primary" onclick="calculateResistance()" /></li>
+						</ul>
+						<div id="base-resistance" style="margin-bottom: 10px;">基礎抗性: 0</div>
+						<div id="buff-details" style="margin-bottom: 10px;">Buff 詳情: </div>
+						<div id="total-resistance" style="font-size: 1.2em; font-weight: bold; color: #ff6b6b;">總抗性: 0</div>
 					</form>
 				</article>
 
@@ -692,11 +762,135 @@
 				saveFormData('s4');
 			}
 
+			// ============ S4 抗性計算器 ============
+
+			// 抗性數據
+			const resistanceData = [
+				{ level: 1, resistance: 100 },
+				{ level: 2, resistance: 200 },
+				{ level: 3, resistance: 300 },
+				{ level: 4, resistance: 550 },
+				{ level: 5, resistance: 700 },
+				{ level: 6, resistance: 850 },
+				{ level: 7, resistance: 1000 },
+				{ level: 8, resistance: 1250 },
+				{ level: 9, resistance: 1500 },
+				{ level: 10, resistance: 1750 },
+				{ level: 11, resistance: 2000 },
+				{ level: 12, resistance: 2250 },
+				{ level: 13, resistance: 2500 },
+				{ level: 14, resistance: 2750 },
+				{ level: 15, resistance: 3000 },
+				{ level: 16, resistance: 3400 },
+				{ level: 17, resistance: 3800 },
+				{ level: 18, resistance: 4200 },
+				{ level: 19, resistance: 4600 },
+				{ level: 20, resistance: 5000 },
+				{ level: 21, resistance: 5500 },
+				{ level: 22, resistance: 6000 },
+				{ level: 23, resistance: 6500 },
+				{ level: 24, resistance: 7000 },
+				{ level: 25, resistance: 7500 },
+				{ level: 26, resistance: 8000 },
+				{ level: 27, resistance: 8500 },
+				{ level: 28, resistance: 9000 },
+				{ level: 29, resistance: 9500 },
+				{ level: 30, resistance: 10000 }
+			];
+
+			// L Buff 抗性數據
+			const lBuffResistance = [0, 50, 150, 250, 250]; // L0, L1, L2, L3, L4
+
+			// 抗性計算函式
+			function calculateResistance() {
+				// 取得基礎抗性
+				const researchLevel = parseInt(document.getElementById('research-level').value) || 0;
+				const researchData = resistanceData.find(item => item.level === researchLevel);
+				const baseResistance = researchData ? researchData.resistance : 0;
+
+				// 取得各種 buff
+				const weeklyCardBuff = document.getElementById('weekly-card-buff').checked ? 250 : 0;
+				const lBuffLevel = parseInt(document.getElementById('l-buff').value) || 0;
+				const lBuffBonus = lBuffResistance[lBuffLevel] || 0;
+				const guardianBuff = document.getElementById('guardian-buff').checked ? 250 : 0;
+
+				// 計算總抗性
+				const totalResistance = baseResistance + weeklyCardBuff + lBuffBonus + guardianBuff;
+
+				// 顯示結果
+				document.getElementById('base-resistance').textContent = `基礎抗性: ${baseResistance}`;
+				
+				// 顯示 buff 詳情
+				const buffDetails = [];
+				if (weeklyCardBuff > 0) buffDetails.push(`週卡: +${weeklyCardBuff}`);
+				if (lBuffBonus > 0) buffDetails.push(`L${lBuffLevel}: +${lBuffBonus}`);
+				if (guardianBuff > 0) buffDetails.push(`守護者: +${guardianBuff}`);
+				
+				const buffText = buffDetails.length > 0 ? buffDetails.join(', ') : '無額外 Buff';
+				document.getElementById('buff-details').textContent = `Buff 詳情: ${buffText}`;
+				
+				document.getElementById('total-resistance').textContent = `總抗性: ${totalResistance}`;
+
+				// 保存抗性計算器資料
+				saveResistanceData();
+			}
+
+			// 保存抗性計算器資料
+			function saveResistanceData() {
+				const data = {
+					researchLevel: document.getElementById('research-level').value,
+					weeklyCardBuff: document.getElementById('weekly-card-buff').checked,
+					lBuff: document.getElementById('l-buff').value,
+					guardianBuff: document.getElementById('guardian-buff').checked
+				};
+				saveData('s4-resistance', data);
+			}
+
+			// 載入抗性計算器資料
+			function loadResistanceData() {
+				const data = loadData('s4-resistance');
+				if (data) {
+					if (data.researchLevel) {
+						document.getElementById('research-level').value = data.researchLevel;
+					}
+					if (data.weeklyCardBuff !== undefined) {
+						document.getElementById('weekly-card-buff').checked = data.weeklyCardBuff;
+					}
+					if (data.lBuff !== undefined) {
+						document.getElementById('l-buff').value = data.lBuff;
+					}
+					if (data.guardianBuff !== undefined) {
+						document.getElementById('guardian-buff').checked = data.guardianBuff;
+					}
+				}
+			}
+
+			// 初始化抗性計算器
+			function initResistanceCalculator() {
+				// 載入之前保存的資料
+				loadResistanceData();
+				
+				// 添加自動保存和計算功能
+				document.getElementById('research-level').addEventListener('change', () => {
+					calculateResistance();
+				});
+				document.getElementById('weekly-card-buff').addEventListener('change', () => {
+					calculateResistance();
+				});
+				document.getElementById('l-buff').addEventListener('change', () => {
+					calculateResistance();
+				});
+				document.getElementById('guardian-buff').addEventListener('change', () => {
+					calculateResistance();
+				});
+			}
+
 			// 初始化所有計算器
 			document.addEventListener('DOMContentLoaded', function () {
 				initS2();
 				initS3();
 				initS4();
+				initResistanceCalculator();
 			});
 		</script>
 	</body>
