@@ -171,6 +171,10 @@
 								<input type="checkbox" id="guardian-buff" name="guardian-buff">
 								<label for="guardian-buff">守護者 (+250 抗性)</label>
 							</div>
+							<div class="field half">
+								<input type="checkbox" id="card-skill-buff" name="card-skill-buff">
+								<label for="card-skill-buff">卡牌技能 (+250 抗性)</label>
+							</div>
 						</div>
 						<ul class="actions">
 							<li><input type="button" value="計算總抗性" class="primary" onclick="calculateResistance()" /></li>
@@ -812,9 +816,10 @@
 				const lBuffLevel = parseInt(document.getElementById('l-buff').value) || 0;
 				const lBuffBonus = lBuffResistance[lBuffLevel] || 0;
 				const guardianBuff = document.getElementById('guardian-buff').checked ? 250 : 0;
+				const cardSkillBuff = document.getElementById('card-skill-buff').checked ? 250 : 0;
 
 				// 計算總抗性
-				const totalResistance = baseResistance + weeklyCardBuff + lBuffBonus + guardianBuff;
+				const totalResistance = baseResistance + weeklyCardBuff + lBuffBonus + guardianBuff + cardSkillBuff;
 
 				// 顯示結果
 				document.getElementById('base-resistance').textContent = `基礎抗性: ${baseResistance}`;
@@ -824,6 +829,7 @@
 				if (weeklyCardBuff > 0) buffDetails.push(`週卡: +${weeklyCardBuff}`);
 				if (lBuffBonus > 0) buffDetails.push(`L${lBuffLevel}: +${lBuffBonus}`);
 				if (guardianBuff > 0) buffDetails.push(`守護者: +${guardianBuff}`);
+				if (cardSkillBuff > 0) buffDetails.push(`卡牌技能: +${cardSkillBuff}`);
 				
 				const buffText = buffDetails.length > 0 ? buffDetails.join(', ') : '無額外 Buff';
 				document.getElementById('buff-details').textContent = `Buff 詳情: ${buffText}`;
@@ -840,7 +846,8 @@
 					researchLevel: document.getElementById('research-level').value,
 					weeklyCardBuff: document.getElementById('weekly-card-buff').checked,
 					lBuff: document.getElementById('l-buff').value,
-					guardianBuff: document.getElementById('guardian-buff').checked
+					guardianBuff: document.getElementById('guardian-buff').checked,
+					cardSkillBuff: document.getElementById('card-skill-buff').checked
 				};
 				saveData('s4-resistance', data);
 			}
@@ -861,6 +868,9 @@
 					if (data.guardianBuff !== undefined) {
 						document.getElementById('guardian-buff').checked = data.guardianBuff;
 					}
+					if (data.cardSkillBuff !== undefined) {
+						document.getElementById('card-skill-buff').checked = data.cardSkillBuff;
+					}
 				}
 			}
 
@@ -880,6 +890,9 @@
 					calculateResistance();
 				});
 				document.getElementById('guardian-buff').addEventListener('change', () => {
+					calculateResistance();
+				});
+				document.getElementById('card-skill-buff').addEventListener('change', () => {
 					calculateResistance();
 				});
 			}
