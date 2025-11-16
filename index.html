@@ -20,7 +20,7 @@
 			<!-- Header -->
 			<header id="header">
 				<div class="logo">
-					<span class="icon fa-gem"></span>
+					<span class="icon" style="font-size: 2em;">💀</span>
 				</div>
 				<div class="content">
 					<div class="inner">
@@ -30,6 +30,7 @@
 				</div>
 				<nav>
 					<ul>
+						<li><a href="#s5">賽季 5</a></li>
 						<li><a href="#s4">賽季 4</a></li>
 						<li><a href="#s4-resistance">S4 抗性計算</a></li>
 						<li><a href="#s3">賽季 3</a></li>
@@ -87,6 +88,29 @@
 						<div id="s3-difference">你還差：0</div>
 						<div id="s3-time-needed">需要 0 小時 0 分鐘</div>
 						<div id="s3-upgrade-time">預計可升級時間：</div>
+					</form>
+				</article>
+
+				<!-- s5 區塊：咖啡因研究所升級時間計算 -->
+				<article id="s5">
+					<h2 class="major">咖啡因研究所升級時間計算 (S5)</h2>
+					<form>
+						<div id="s5-selects-container"></div>
+						<div>
+							<label>你現在有：
+								<input type="text" id="s5-current-resource" placeholder="咖啡數量">
+							</label>
+						</div>
+						<div>
+							<label>咖啡因研究所下一級總共需要：
+								<input type="text" id="s5-needed-resource" placeholder="所需咖啡">
+							</label>
+						</div>
+						<button type="button" class="button primary"  onclick="calculateS5Output()" style="margin-bottom:20px;">開始計算</button>
+						<div id="s5-total-output">每小時總產出: 0</div>
+						<div id="s5-difference">你還差：0</div>
+						<div id="s5-time-needed">需要 0 小時 0 分鐘</div>
+						<div id="s5-upgrade-time">預計可升級時間：</div>
 					</form>
 				</article>
 
@@ -569,6 +593,8 @@
 							calculateS3Output();
 						} else if (season === 's4') {
 							calculateS4Output();
+						} else if (season === 's5') {
+							calculateS5Output();
 						}
 					}
 				};
@@ -770,6 +796,70 @@
 				saveFormData('s4');
 			}
 
+			// ============ s5 計算器 ============
+
+			// 初始化 s5 的下拉選單
+			function initS5() {
+				const container = document.getElementById('s5-selects-container');
+				for (let i = 1; i <= 5; i++) {
+					const label = document.createElement('label');
+					label.className = 'factory-label';
+					label.textContent = `咖啡工坊${i}：`;
+					const select = document.createElement('select');
+					select.id = `s5-factory${i}`;
+					select.name = `s5-factory${i}`;
+					select.options.add(new Option('選擇等級', ''));
+					levelOutput.forEach(item => {
+						select.options.add(new Option(`等級 ${item.level}`, item.level));
+					});
+					container.appendChild(label);
+					container.appendChild(select);
+					container.appendChild(document.createElement('br'));
+				}
+				
+				// 載入之前保存的資料
+				loadFormData('s5');
+				// 添加自動保存功能
+				addAutoSave('s5');
+				// 添加 Enter 鍵觸發計算功能
+				addEnterKeyListener('s5');
+			}
+
+			// s5 的計算函式
+			function calculateS5Output() {
+				let total = 0;
+				for (let i = 1; i <= 5; i++) {
+					const select = document.getElementById(`s5-factory${i}`);
+					const level = parseInt(select.value);
+					const item = levelOutput.find(item => item.level === level);
+					const output = item ? item.output : 0;
+					total += output;
+				}
+				document.getElementById('s5-total-output').textContent = `每小時總產出: ${total}`;
+
+				const current = parseInt(document.getElementById('s5-current-resource').value) || 0;
+				const needed = parseInt(document.getElementById('s5-needed-resource').value) || 0;
+				const difference = needed - current;
+				document.getElementById('s5-difference').textContent = `你還差：${difference}`;
+
+				if (total <= 0) {
+					document.getElementById('s5-time-needed').textContent = `無法計算時間 (產出為 0)`;
+					document.getElementById('s5-upgrade-time').textContent = `預計可升級時間：無法計算`;
+					return;
+				}
+
+				const hoursNeeded = difference / total;
+				const hours = Math.floor(hoursNeeded);
+				const minutes = Math.round((hoursNeeded - hours) * 60);
+				document.getElementById('s5-time-needed').textContent = `需要 ${hours} 小時 ${minutes} 分鐘`;
+
+				const upgradeTime = new Date(Date.now() + hoursNeeded * 3600000);
+				document.getElementById('s5-upgrade-time').textContent = `預計可升級時間：${upgradeTime.toLocaleString()}`;
+				
+				// 保存資料
+				saveFormData('s5');
+			}
+
 			// ============ S4 抗性計算器 ============
 
 			// 抗性數據
@@ -907,6 +997,7 @@
 				initS2();
 				initS3();
 				initS4();
+				initS5();
 				initResistanceCalculator();
 			});
 		</script>
