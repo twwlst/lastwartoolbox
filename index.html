@@ -30,11 +30,12 @@
 				</div>
 				<nav>
 					<ul>
-						<li><a href="#s5">賽季 5</a></li>
-						<li><a href="#s4">賽季 4</a></li>
-						<li><a href="#s4-resistance">S4 抗性計算</a></li>
-						<li><a href="#s3">賽季 3</a></li>
-						<li><a href="#s2">賽季 2</a></li>
+						<li><a href="#s5">S5 研究所</a></li>
+						<li><a href="#s5-resistance">S5 抗性</a></li>
+						<li><a href="#s4">S4 研究所</a></li>
+						<li><a href="#s4-resistance">S4 抗性</a></li>
+						<li><a href="#s3">S3 研究所</a></li>
+						<li><a href="#s2">S2 研究所</a></li>
 						<!-- <li><a href="#about">About</a></li>
 						<li><a href="#contact">Contact</a></li> -->
 						<!-- 如有需要，也可將上方連結移至此處 -->
@@ -134,6 +135,96 @@
 						<div id="s4-difference">你還差：0</div>
 						<div id="s4-time-needed">需要 0 小時 0 分鐘</div>
 						<div id="s4-upgrade-time">預計可升級時間：</div>
+					</form>
+				</article>
+
+				<!-- s5 抗性計算器 -->
+				<article id="s5-resistance">
+					<h2 class="major">S5 抗性計算機</h2>
+					<form method="post" action="#">
+						<div class="fields">
+							<div class="field">
+								<label for="s5-research-level">咖啡因研究所等級</label>
+								<select id="s5-research-level" name="s5-research-level">
+									<option value="">選擇等級</option>
+									<option value="1">等級 1 (100 抗性)</option>
+									<option value="2">等級 2 (200 抗性)</option>
+									<option value="3">等級 3 (300 抗性)</option>
+									<option value="4">等級 4 (400 抗性)</option>
+									<option value="5">等級 5 (500 抗性)</option>
+									<option value="6">等級 6 (750 抗性)</option>
+									<option value="7">等級 7 (1000 抗性)</option>
+									<option value="8">等級 8 (1250 抗性)</option>
+									<option value="9">等級 9 (1500 抗性)</option>
+									<option value="10">等級 10 (1750 抗性)</option>
+									<option value="11">等級 11 (2000 抗性)</option>
+									<option value="12">等級 12 (2250 抗性)</option>
+									<option value="13">等級 13 (2500 抗性)</option>
+									<option value="14">等級 14 (2750 抗性)</option>
+									<option value="15">等級 15 (3000 抗性)</option>
+									<option value="16">等級 16 (3250 抗性)</option>
+									<option value="17">等級 17 (3500 抗性)</option>
+									<option value="18">等級 18 (3750 抗性)</option>
+									<option value="19">等級 19 (4000 抗性)</option>
+									<option value="20">等級 20 (4250 抗性)</option>
+									<option value="21">等級 21 (4500 抗性)</option>
+									<option value="22">等級 22 (4750 抗性)</option>
+									<option value="23">等級 23 (5000 抗性)</option>
+									<option value="24">等級 24 (5250 抗性)</option>
+									<option value="25">等級 25 (5500 抗性)</option>
+									<option value="26">等級 26 (5750 抗性)</option>
+									<option value="27">等級 27 (6000 抗性)</option>
+									<option value="28">等級 28 (6250 抗性)</option>
+									<option value="29">等級 29 (6500 抗性)</option>
+									<option value="30">等級 30 (6750 抗性)</option>
+									<option value="31">等級 31 (7000 抗性)</option>
+									<option value="32">等級 32 (7250 抗性)</option>
+									<option value="33">等級 33 (7500 抗性)</option>
+									<option value="34">等級 34 (7750 抗性)</option>
+									<option value="35">等級 35 (8000 抗性)</option>
+									<option value="36">等級 36 (8250 抗性)</option>
+									<option value="37">等級 37 (8500 抗性)</option>
+									<option value="38">等級 38 (8750 抗性)</option>
+									<option value="39">等級 39 (9000 抗性)</option>
+									<option value="40">等級 40 (9250 抗性)</option>
+									<option value="41">等級 41 (9500 抗性)</option>
+									<option value="42">等級 42 (9750 抗性)</option>
+									<option value="43">等級 43 (10000 抗性)</option>
+									<option value="44">等級 44 (10250 抗性)</option>
+									<option value="45">等級 45 (10500 抗性)</option>
+									<option value="46">等級 46 (11000 抗性)</option>
+									<option value="47">等級 47 (11500 抗性)</option>
+									<option value="48">等級 48 (12000 抗性)</option>
+									<option value="49">等級 49 (12500 抗性)</option>
+								</select>
+							</div>
+						<div class="field">
+							<label for="s5-coffee-buff">咖啡加成</label>
+							<select id="s5-coffee-buff" name="s5-coffee-buff">
+								<option value="0">無 (+0 抗性)</option>
+								<option value="200">咖啡 (+200 抗性)</option>
+								<option value="500">咖啡 (+500 抗性)</option>
+							</select>
+						</div>
+							<div class="field half">
+								<input type="checkbox" id="s5-weekly-card-buff" name="s5-weekly-card-buff">
+								<label for="s5-weekly-card-buff">週卡 (+250 抗性)</label>
+							</div>
+							<div class="field half">
+								<input type="checkbox" id="s5-guardian-buff" name="s5-guardian-buff">
+								<label for="s5-guardian-buff">守護者 (+250 抗性)</label>
+							</div>
+							<div class="field half">
+								<input type="checkbox" id="s5-card-skill-buff" name="s5-card-skill-buff">
+								<label for="s5-card-skill-buff">卡牌技能 (+250 抗性)</label>
+							</div>
+						</div>
+						<ul class="actions">
+							<li><input type="button" value="計算總抗性" class="primary" onclick="calculateS5Resistance()" /></li>
+						</ul>
+						<div id="s5-base-resistance" style="margin-bottom: 10px;">基礎抗性: 0</div>
+						<div id="s5-buff-details" style="margin-bottom: 10px;">Buff 詳情: </div>
+						<div id="s5-total-resistance" style="font-size: 1.2em; font-weight: bold; color: #ff6b6b;">總抗性: 0</div>
 					</form>
 				</article>
 
@@ -860,6 +951,156 @@
 				saveFormData('s5');
 			}
 
+			// ============ S5 抗性計算器 ============
+
+			// S5 抗性數據
+			const s5ResistanceData = [
+				{ level: 1, resistance: 100 },
+				{ level: 2, resistance: 200 },
+				{ level: 3, resistance: 300 },
+				{ level: 4, resistance: 400 },
+				{ level: 5, resistance: 500 },
+				{ level: 6, resistance: 750 },
+				{ level: 7, resistance: 1000 },
+				{ level: 8, resistance: 1250 },
+				{ level: 9, resistance: 1500 },
+				{ level: 10, resistance: 1750 },
+				{ level: 11, resistance: 2000 },
+				{ level: 12, resistance: 2250 },
+				{ level: 13, resistance: 2500 },
+				{ level: 14, resistance: 2750 },
+				{ level: 15, resistance: 3000 },
+				{ level: 16, resistance: 3250 },
+				{ level: 17, resistance: 3500 },
+				{ level: 18, resistance: 3750 },
+				{ level: 19, resistance: 4000 },
+				{ level: 20, resistance: 4250 },
+				{ level: 21, resistance: 4500 },
+				{ level: 22, resistance: 4750 },
+				{ level: 23, resistance: 5000 },
+				{ level: 24, resistance: 5250 },
+				{ level: 25, resistance: 5500 },
+				{ level: 26, resistance: 5750 },
+				{ level: 27, resistance: 6000 },
+				{ level: 28, resistance: 6250 },
+				{ level: 29, resistance: 6500 },
+				{ level: 30, resistance: 6750 },
+				{ level: 31, resistance: 7000 },
+				{ level: 32, resistance: 7250 },
+				{ level: 33, resistance: 7500 },
+				{ level: 34, resistance: 7750 },
+				{ level: 35, resistance: 8000 },
+				{ level: 36, resistance: 8250 },
+				{ level: 37, resistance: 8500 },
+				{ level: 38, resistance: 8750 },
+				{ level: 39, resistance: 9000 },
+				{ level: 40, resistance: 9250 },
+				{ level: 41, resistance: 9500 },
+				{ level: 42, resistance: 9750 },
+				{ level: 43, resistance: 10000 },
+				{ level: 44, resistance: 10250 },
+				{ level: 45, resistance: 10500 },
+				{ level: 46, resistance: 11000 },
+				{ level: 47, resistance: 11500 },
+				{ level: 48, resistance: 12000 },
+				{ level: 49, resistance: 12500 }
+			];
+
+			// L Buff 抗性數據
+			const lBuffResistance = [0, 50, 150, 250]; // L0, L1, L2, L3/4
+
+			// S5 抗性計算函式
+			function calculateS5Resistance() {
+				// 取得基礎抗性
+				const researchLevel = parseInt(document.getElementById('s5-research-level').value) || 0;
+				const researchData = s5ResistanceData.find(item => item.level === researchLevel);
+				const baseResistance = researchData ? researchData.resistance : 0;
+
+				// 取得各種 buff
+				const weeklyCardBuff = document.getElementById('s5-weekly-card-buff').checked ? 250 : 0;
+				const coffeeBuffBonus = parseInt(document.getElementById('s5-coffee-buff').value) || 0;
+				const guardianBuff = document.getElementById('s5-guardian-buff').checked ? 250 : 0;
+				const cardSkillBuff = document.getElementById('s5-card-skill-buff').checked ? 250 : 0;
+
+				// 計算總抗性
+				const totalResistance = baseResistance + weeklyCardBuff + coffeeBuffBonus + guardianBuff + cardSkillBuff;
+
+				// 顯示結果
+				document.getElementById('s5-base-resistance').textContent = `基礎抗性: ${baseResistance}`;
+				
+				// 顯示 buff 詳情
+				const buffDetails = [];
+				if (weeklyCardBuff > 0) buffDetails.push(`週卡: +${weeklyCardBuff}`);
+				if (coffeeBuffBonus > 0) buffDetails.push(`咖啡: +${coffeeBuffBonus}`);
+				if (guardianBuff > 0) buffDetails.push(`守護者: +${guardianBuff}`);
+				if (cardSkillBuff > 0) buffDetails.push(`卡牌技能: +${cardSkillBuff}`);
+				
+				const buffText = buffDetails.length > 0 ? buffDetails.join(', ') : '無額外 Buff';
+				document.getElementById('s5-buff-details').textContent = `Buff 詳情: ${buffText}`;
+				
+				document.getElementById('s5-total-resistance').textContent = `總抗性: ${totalResistance}`;
+
+				// 保存抗性計算器資料
+				saveS5ResistanceData();
+			}
+
+			// 保存 S5 抗性計算器資料
+			function saveS5ResistanceData() {
+				const data = {
+					researchLevel: document.getElementById('s5-research-level').value,
+					weeklyCardBuff: document.getElementById('s5-weekly-card-buff').checked,
+					coffeeBuff: document.getElementById('s5-coffee-buff').value,
+					guardianBuff: document.getElementById('s5-guardian-buff').checked,
+					cardSkillBuff: document.getElementById('s5-card-skill-buff').checked
+				};
+				saveData('s5-resistance', data);
+			}
+
+			// 載入 S5 抗性計算器資料
+			function loadS5ResistanceData() {
+				const data = loadData('s5-resistance');
+				if (data) {
+					if (data.researchLevel) {
+						document.getElementById('s5-research-level').value = data.researchLevel;
+					}
+					if (data.weeklyCardBuff !== undefined) {
+						document.getElementById('s5-weekly-card-buff').checked = data.weeklyCardBuff;
+					}
+					if (data.coffeeBuff !== undefined) {
+						document.getElementById('s5-coffee-buff').value = data.coffeeBuff;
+					}
+					if (data.guardianBuff !== undefined) {
+						document.getElementById('s5-guardian-buff').checked = data.guardianBuff;
+					}
+					if (data.cardSkillBuff !== undefined) {
+						document.getElementById('s5-card-skill-buff').checked = data.cardSkillBuff;
+					}
+				}
+			}
+
+			// 初始化 S5 抗性計算器
+			function initS5ResistanceCalculator() {
+				// 載入之前保存的資料
+				loadS5ResistanceData();
+				
+				// 添加自動保存和計算功能
+				document.getElementById('s5-research-level').addEventListener('change', () => {
+					calculateS5Resistance();
+				});
+				document.getElementById('s5-weekly-card-buff').addEventListener('change', () => {
+					calculateS5Resistance();
+				});
+				document.getElementById('s5-coffee-buff').addEventListener('change', () => {
+					calculateS5Resistance();
+				});
+				document.getElementById('s5-guardian-buff').addEventListener('change', () => {
+					calculateS5Resistance();
+				});
+				document.getElementById('s5-card-skill-buff').addEventListener('change', () => {
+					calculateS5Resistance();
+				});
+			}
+
 			// ============ S4 抗性計算器 ============
 
 			// 抗性數據
@@ -895,9 +1136,6 @@
 				{ level: 29, resistance: 9500 },
 				{ level: 30, resistance: 10000 }
 			];
-
-			// L Buff 抗性數據
-			const lBuffResistance = [0, 50, 150, 250]; // L0, L1, L2, L3/4
 
 			// 抗性計算函式
 			function calculateResistance() {
@@ -998,6 +1236,7 @@
 				initS3();
 				initS4();
 				initS5();
+				initS5ResistanceCalculator();
 				initResistanceCalculator();
 			});
 		</script>
