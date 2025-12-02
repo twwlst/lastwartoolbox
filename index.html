@@ -900,18 +900,21 @@
 
 			// ============ s5 計算器 ============
 
+			// S5 咖啡工廠等級數據 (最高只到 30 級)
+			const s5LevelOutput = levelOutput.filter(item => item.level <= 30);
+
 			// 初始化 s5 的下拉選單
 			function initS5() {
 				const container = document.getElementById('s5-selects-container');
 				for (let i = 1; i <= 5; i++) {
 					const label = document.createElement('label');
 					label.className = 'factory-label';
-					label.textContent = `咖啡工坊${i}：`;
+					label.textContent = `咖啡工廠${i}：`;
 					const select = document.createElement('select');
 					select.id = `s5-factory${i}`;
 					select.name = `s5-factory${i}`;
 					select.options.add(new Option('選擇等級', ''));
-					levelOutput.forEach(item => {
+					s5LevelOutput.forEach(item => {
 						select.options.add(new Option(`等級 ${item.level}`, item.level));
 					});
 					container.appendChild(label);
